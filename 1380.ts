@@ -1,5 +1,4 @@
 import * as fs from 'fs';
-import { networkInterfaces } from 'os';
 const input = fs.readFileSync('/dev/stdin', 'utf8');
 
 const nlarray = input.split('\n');
@@ -17,8 +16,20 @@ n_parray.sort(
     }
 );
 
-let members = 0;
+let pass = 0;
 
-for (let i = 0;i < K; i++) {
-    members += 1;
+//border を0 から400 まで設定してみて、合格人数を足していく
+for (let i = 0;i < 400; i++) {
+    for (let j = 0;j < N; j++) {
+        if (n_parray[j] < i) {
+            pass += 1;
+        }
+    }
+}
+
+if (pass <= K) {
+    console.log(pass);
+} else {
+    //ここどうしたらいいのうおお
+    console.log(K);
 }
